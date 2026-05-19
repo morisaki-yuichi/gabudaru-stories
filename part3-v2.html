@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Giant in the Garden and the Missing Stone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #fdf6e3;
+      color: #3d2b1f;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .book {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fffdf5;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(100, 60, 20, 0.12);
+      overflow: hidden;
+    }
+
+    /* Cover header */
+    .cover {
+      background: linear-gradient(135deg, #f9a56a 0%, #f9d57a 100%);
+      padding: 3rem 2.5rem 2.5rem;
+      text-align: center;
+    }
+
+    .cover-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 0.75rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+
+    .cover h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(120, 60, 0, 0.25);
+      line-height: 1.25;
+    }
+
+    /* Story body */
+    .story {
+      padding: 2.5rem 2.5rem 3rem;
+    }
+
+    .story p {
+      font-size: 1.125rem;
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Chapter headings */
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #c96a1a;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 2.25rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 1.1em;
+      background: #f9a56a;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Dialogue */
+    .dialogue {
+      background: #fff5ec;
+      border-left: 4px solid #f9a56a;
+      border-radius: 0 12px 12px 0;
+      padding: 0.6rem 1rem 0.6rem 1.1rem;
+      margin: 0.4rem 0 0.4rem 0.5rem;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #7a3a0a;
+    }
+
+    /* Sound words */
+    .sound {
+      font-weight: 700;
+      font-style: italic;
+      color: #c96a1a;
+    }
+
+    /* Divider */
+    .divider {
+      text-align: center;
+      margin: 2rem 0 0;
+      font-size: 1.3rem;
+      opacity: 0.35;
+      letter-spacing: 0.4em;
+    }
+
+    /* Footer */
+    .ending {
+      background: linear-gradient(135deg, #f9d57a 0%, #f9a56a 100%);
+      margin: 2.5rem -2.5rem -3rem;
+      padding: 1.75rem 2.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(120, 60, 0, 0.25);
+    }
+
+    @media (max-width: 480px) {
+      .cover h1 { font-size: 1.5rem; }
+      .story { padding: 1.75rem 1.5rem 2rem; }
+      .ending { margin: 2rem -1.5rem -2rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <article class="book">
+
+    <header class="cover">
+      <span class="cover-emoji">🐢🐕</span>
+      <h1>The Giant in the Garden<br>and the Missing Stone</h1>
+    </header>
+
+    <section class="story">
+
+      <p>Spring came to the garden. The days were warm and the flowers were bright. Gabu and Daru were a little bigger now. They were the same size!</p>
+      <p>After their adventure in the storm, Gabu was even more careful about everything. Daru was always looking for something new to see.</p>
+      <p>But this time, they did not need to look for adventure. The adventure came to them.</p>
+
+      <div class="divider">🌸 🌸 🌸</div>
+
+      <h2>The Arrival of Dango</h2>
+
+      <p>It was a quiet Tuesday morning. Gabu and Daru were eating fresh dandelion leaves. Then the ground began to shake. A loud, happy barking filled the garden.</p>
+      <p><span class="sound">"Woof! Woof! Thump, thump, thump!"</span></p>
+      <p>Before they could pull their heads into their shells, a ball of orange and white fur came running around the corner of the house. It was a puppy. He had a long body, very short legs, big ears, and a short fluffy tail that moved very fast.</p>
+      <p>It was Dango, the neighbor's new Corgi boy.</p>
+      <p>Dango ran right up to them. His tongue was out. He was very happy. His little tail moved like a fan.</p>
+      <p class="dialogue">"Hello! Wow! What are you? Are you rocks? Moving rocks!" Dango barked. He jumped from side to side, sniffing their faces.</p>
+      <p>Gabu pulled back slowly. "I am not a rock," he said. "I am Gabu. Please calm down."</p>
+      <p>But Daru was already stretching his neck out to get a better look.</p>
+      <p class="dialogue">"Hello! I am Daru! What are you? You have very short legs!"</p>
+      <p class="dialogue">"I'm Dango! I like running, I like balls, and I like you! Can you run?"</p>
+      <p class="dialogue">"We can walk," Daru said, smiling. "But not fast."</p>
+      <p>For the next hour, Dango followed them everywhere. He thought their slow walking was very funny. Every time Gabu took one step, Dango ran around him three times, then lay down and waited. He was very loud. But Gabu and Daru saw that he was kind and just wanted to play.</p>
+
+      <h2>A Terrible Loss</h2>
+
+      <p>A few weeks later, Dango's big energy made a problem.</p>
+      <p>The days were very hot. Gabu and Daru went to sit near the cool, wet earth by the compost heap. It was a good place to rest.</p>
+      <p>Dango came to visit, as he did every day. He started to dig a hole near them. He loved to dig. The dirt flew fast behind him.</p>
+      <p class="dialogue">"Look how deep this is!" Dango barked.</p>
+      <p class="dialogue">"That is nice, Dango, but please be careful," Gabu said slowly.</p>
+      <p>He moved a little away from the flying dirt.</p>
+      <p>The hot day made everyone sleepy. Gabu and Daru went into their shells for a long nap. Dango slept in the shade of a bush.</p>
+      <p>When Daru woke up, the sun was going down. He looked over at Gabu. Gabu was still sleeping.</p>
+      <p>Daru looked more carefully at Gabu's shell. Then he saw it. In the middle of Gabu's top shell, there was an empty space. Gabu had a small, shiny blue stone on his shell. He found it weeks ago and put it there with tree sap. But now — the stone was gone.</p>
+      <p>Gabu woke up.</p>
+      <p class="dialogue">"What are you doing, Daru? That tickles."</p>
+      <p class="dialogue">"Gabu... your blue stone. It is not there," Daru said.</p>
+      <p>Gabu tried to look at his own back, but he could not see it.</p>
+      <p class="dialogue">"What? No! I had that stone for one month! Where is it?"</p>
+
+      <h2>The Search Party</h2>
+
+      <p>Dango heard their voices and ran over.</p>
+      <p class="dialogue">"What is wrong, friends? Are we playing a game?"</p>
+      <p class="dialogue">"It is not a game, Dango," Gabu said sadly. "My blue stone fell off my shell. Now it is gone."</p>
+      <p>Dango's ears went up.</p>
+      <p class="dialogue">"A mystery! Do not worry, Gabu. I have a secret." He tapped his wet black nose with his paw. "I can find anything with this nose!"</p>
+      <p>The three friends looked for the stone. Dango kept his nose on the ground. Gabu and Daru looked in the grass, step by step.</p>
+      <p>They looked near the compost heap, under the big leaves, and by the water bowl. But they could not find it. The sky was getting dark. Gabu was very sad.</p>
+      <p class="dialogue">"Maybe it is in the ground," Daru said. He looked at Dango's hole.</p>
+      <p>Dango stopped.</p>
+      <p class="dialogue">"Oh no! I moved a lot of dirt today. Did I put it in the hole?"</p>
+      <p>Dango ran to his hole and started to dig again. But this time he was very careful. He moved the dirt slowly with his paws. Gabu and Daru watched and waited.</p>
+      <p>After a few minutes, Dango stopped. He put his nose in one spot. He pushed something softly with his nose. A small blue light came from the dark dirt.</p>
+      <p class="dialogue">"I found it! I found it!" Dango called out, his tail wagging fast.</p>
+
+      <h2>True Friendship</h2>
+
+      <p>Daru picked up the blue stone with his mouth and brought it to Gabu. But the old sap was gone. The stone would not stay on Gabu's shell now.</p>
+      <p>Gabu looked at the stone. He looked at Dango, who was dirty and looked very sorry.</p>
+      <p class="dialogue">"I am sorry, Gabu," Dango said. His ears went flat. "I was too wild."</p>
+      <p class="dialogue">Gabu smiled at him. "It is okay, Dango. You did not do it on purpose. And you found it with your nose. You are a very good detective."</p>
+      <p>Then Gabu turned to Daru.</p>
+      <p class="dialogue">"You know, Daru, I do not need to wear this stone. Can we put it at the door of our home? Then all three of us can see it every day."</p>
+      <p>Daru's eyes went bright.</p>
+      <p class="dialogue">"Yes! I love that idea."</p>
+      <p>They put the blue stone at the door of the small space under the porch where they slept. When the moonlight hit the stone, it looked beautiful.</p>
+
+      <div class="ending">
+        After that day, the garden was never quiet.<br>
+        But Gabu and Daru knew — a loud, short-legged friend<br>
+        is a very good friend. 🐾✨
+      </div>
+
+    </section>
+  </article>
+</body>
+</html>

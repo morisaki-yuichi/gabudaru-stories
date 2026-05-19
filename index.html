@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabu & Daru Stories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fdf6e3;
+      color: #3d2b1f;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    header .title-emoji { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #3d2b1f;
+      line-height: 1.2;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      color: #7a5a3a;
+      font-size: 1rem;
+    }
+
+    /* Voice selector */
+    .voice-bar {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      background: #fffdf5;
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(100,60,20,0.08);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .voice-bar label {
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      color: #5a3a20;
+    }
+
+    .voice-bar select {
+      flex: 1;
+      min-width: 200px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 0.45rem 0.75rem;
+      border: 2px solid #e8d0b8;
+      border-radius: 10px;
+      background: #fdf6e3;
+      color: #3d2b1f;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .voice-bar select:focus { border-color: #e07b39; }
+
+    /* Story cards grid */
+    .cards {
+      max-width: 720px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: #fffdf5;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(100,60,20,0.10);
+      overflow: hidden;
+    }
+
+    .card-cover {
+      padding: 1.25rem 1.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-cover .emoji { font-size: 2rem; line-height: 1; }
+
+    .card-cover .meta { flex: 1; }
+    .card-cover .part-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+      color: #fff;
+    }
+    .card-cover h2 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    /* per-part cover colors */
+    .card[data-part="1"] .card-cover { background: linear-gradient(135deg, #a8d5a2, #f9c74f); }
+    .card[data-part="2"] .card-cover { background: linear-gradient(135deg, #7eb8d4, #b89fd4); }
+    .card[data-part="3"] .card-cover { background: linear-gradient(135deg, #f9a56a, #f9d57a); }
+    .card[data-part="4"] .card-cover { background: linear-gradient(135deg, #c0614a, #e8a87c); }
+
+    .card-body { padding: 1rem 1.5rem 1.25rem; }
+
+    /* Player */
+    .player { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .controls { display: flex; align-items: center; gap: 0.75rem; }
+
+    .play-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.1s, opacity 0.1s;
+    }
+
+    .play-btn:active { transform: scale(0.92); }
+
+    .card[data-part="1"] .play-btn { background: #a8d5a2; color: #1a4a18; }
+    .card[data-part="2"] .play-btn { background: #7eb8d4; color: #0d3a52; }
+    .card[data-part="3"] .play-btn { background: #f9a56a; color: #6b2a0e; }
+    .card[data-part="4"] .play-btn { background: #c0614a; color: #fff; }
+
+    .play-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .time {
+      font-size: 0.8rem;
+      color: #9a7a5a;
+      white-space: nowrap;
+      min-width: 80px;
+      text-align: right;
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      position: relative;
+      height: 6px;
+      background: #e8d8c8;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.3s linear;
+      pointer-events: none;
+    }
+
+    .card[data-part="1"] .progress-fill { background: #a8d5a2; }
+    .card[data-part="2"] .progress-fill { background: #7eb8d4; }
+    .card[data-part="3"] .progress-fill { background: #f9a56a; }
+    .card[data-part="4"] .progress-fill { background: #c0614a; }
+
+    /* Read link */
+    .read-link {
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #9a7a5a;
+      text-decoration: none;
+    }
+    .read-link:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.5rem; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="title-emoji">🐢</span>
+  <h1>Gabu &amp; Daru Stories</h1>
+  <p>A series of read-aloud stories for young learners</p>
+</header>
+
+<div class="voice-bar">
+  <label for="voiceSelect">🔊 Voice:</label>
+  <select id="voiceSelect">
+    <optgroup label="US English">
+      <option value="en-US-AvaNeural">Ava — Expressive, Caring (US)</option>
+      <option value="en-US-AnaNeural">Ana — Cute, Cartoon (US)</option>
+      <option value="en-US-BrianNeural">Brian — Casual, Sincere (US)</option>
+      <option value="en-US-JennyNeural">Jenny — Friendly, Warm (US)</option>
+    </optgroup>
+    <optgroup label="UK English">
+      <option value="en-GB-LibbyNeural">Libby — Friendly (UK)</option>
+      <option value="en-GB-MaisieNeural">Maisie — Friendly (UK)</option>
+      <option value="en-GB-RyanNeural">Ryan — Friendly (UK)</option>
+      <option value="en-GB-SoniaNeural">Sonia — Friendly (UK)</option>
+      <option value="en-GB-ThomasNeural">Thomas — Friendly (UK)</option>
+    </optgroup>
+  </select>
+</div>
+
+<div class="cards">
+
+  <div class="card" data-part="1">
+    <div class="card-cover">
+      <span class="emoji">🐢</span>
+      <div class="meta">
+        <div class="part-label">Part 1</div>
+        <h2>The Great Tomato Adventure</h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="player">
+        <div class="controls">
+          <button class="play-btn" aria-label="Play">▶</button>
+          <div class="progress-wrap">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="time">0:00 / 0:00</span>
+        </div>
+      </div>
+      <a class="read-link" href="part1-v2.html">📖 Read the story</a>
+      <audio src="audio/en-US-AvaNeural/part1.mp3" preload="none"></audio>
+    </div>
+  </div>
+
+  <div class="card" data-part="2">
+    <div class="card-cover">
+      <span class="emoji">🐢⛈️</span>
+      <div class="meta">
+        <div class="part-label">Part 2</div>
+        <h2>The Secret Garden and the Big Storm</h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="player">
+        <div class="controls">
+          <button class="play-btn" aria-label="Play">▶</button>
+          <div class="progress-wrap">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="time">0:00 / 0:00</span>
+        </div>
+      </div>
+      <a class="read-link" href="part2-v2.html">📖 Read the story</a>
+      <audio src="audio/en-US-AvaNeural/part2.mp3" preload="none"></audio>
+    </div>
+  </div>
+
+  <div class="card" data-part="3">
+    <div class="card-cover">
+      <span class="emoji">🐢🐕</span>
+      <div class="meta">
+        <div class="part-label">Part 3</div>
+        <h2>The Giant in the Garden and the Missing Stone</h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="player">
+        <div class="controls">
+          <button class="play-btn" aria-label="Play">▶</button>
+          <div class="progress-wrap">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="time">0:00 / 0:00</span>
+        </div>
+      </div>
+      <a class="read-link" href="part3-v2.html">📖 Read the story</a>
+      <audio src="audio/en-US-AvaNeural/part3.mp3" preload="none"></audio>
+    </div>
+  </div>
+
+  <div class="card" data-part="4">
+    <div class="card-cover">
+      <span class="emoji">🐕🐢</span>
+      <div class="meta">
+        <div class="part-label">Part 4</div>
+        <h2>Suke-san Does Not Need Anyone</h2>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="player">
+        <div class="controls">
+          <button class="play-btn" aria-label="Play">▶</button>
+          <div class="progress-wrap">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="time">0:00 / 0:00</span>
+        </div>
+      </div>
+      <a class="read-link" href="part4-v1.html">📖 Read the story</a>
+      <audio src="audio/en-US-AvaNeural/part4.mp3" preload="none"></audio>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const voiceSelect = document.getElementById('voiceSelect');
+  const cards = document.querySelectorAll('.card');
+
+  function fmt(sec) {
+    if (isNaN(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  cards.forEach((card, i) => {
+    const part = `part${i + 1}`;
+    const audio = card.querySelector('audio');
+    const btn = card.querySelector('.play-btn');
+    const fill = card.querySelector('.progress-fill');
+    const timeEl = card.querySelector('.time');
+    const progressWrap = card.querySelector('.progress-wrap');
+
+    audio.addEventListener('loadedmetadata', () => {
+      timeEl.textContent = `0:00 / ${fmt(audio.duration)}`;
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+      fill.style.width = pct + '%';
+      timeEl.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+    });
+
+    audio.addEventListener('ended', () => {
+      btn.textContent = '▶';
+      fill.style.width = '0%';
+      audio.currentTime = 0;
+    });
+
+    btn.addEventListener('click', () => {
+      const playing = !audio.paused;
+      // pause all others
+      cards.forEach(c => {
+        const a = c.querySelector('audio');
+        if (a !== audio && !a.paused) {
+          a.pause();
+          c.querySelector('.play-btn').textContent = '▶';
+        }
+      });
+      if (playing) {
+        audio.pause();
+        btn.textContent = '▶';
+      } else {
+        audio.play();
+        btn.textContent = '⏸';
+      }
+    });
+
+    progressWrap.addEventListener('click', e => {
+      if (!audio.duration) return;
+      const rect = progressWrap.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    });
+  });
+
+  voiceSelect.addEventListener('change', () => {
+    const voice = voiceSelect.value;
+    cards.forEach((card, i) => {
+      const part = `part${i + 1}`;
+      const audio = card.querySelector('audio');
+      const wasPlaying = !audio.paused;
+      const currentTime = audio.currentTime;
+      audio.pause();
+      card.querySelector('.play-btn').textContent = '▶';
+      audio.src = `audio/${voice}/${part}.mp3`;
+      audio.load();
+    });
+  });
+</script>
+
+</body>
+</html>

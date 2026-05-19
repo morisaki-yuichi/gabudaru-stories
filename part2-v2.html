@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Secret Garden and the Big Storm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #fdf6e3;
+      color: #3d2b1f;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .book {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fffdf5;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(100, 60, 20, 0.12);
+      overflow: hidden;
+    }
+
+    /* Cover header */
+    .cover {
+      background: linear-gradient(135deg, #7eb8d4 0%, #b89fd4 100%);
+      padding: 3rem 2.5rem 2.5rem;
+      text-align: center;
+    }
+
+    .cover-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 0.75rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+
+    .cover h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(40, 40, 80, 0.25);
+      line-height: 1.25;
+    }
+
+    /* Story body */
+    .story {
+      padding: 2.5rem 2.5rem 3rem;
+    }
+
+    .story p {
+      font-size: 1.125rem;
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Chapter headings */
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #5a7ab5;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 2.25rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 1.1em;
+      background: #b89fd4;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Dialogue */
+    .dialogue {
+      background: #f0f0fb;
+      border-left: 4px solid #b89fd4;
+      border-radius: 0 12px 12px 0;
+      padding: 0.6rem 1rem 0.6rem 1.1rem;
+      margin: 0.4rem 0 0.4rem 0.5rem;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #3a3570;
+    }
+
+    /* Sound words */
+    .sound {
+      font-weight: 700;
+      font-style: italic;
+      color: #5a7ab5;
+    }
+
+    /* Divider */
+    .divider {
+      text-align: center;
+      margin: 2rem 0 0;
+      font-size: 1.3rem;
+      opacity: 0.35;
+      letter-spacing: 0.4em;
+    }
+
+    /* Footer */
+    .ending {
+      background: linear-gradient(135deg, #b89fd4 0%, #7eb8d4 100%);
+      margin: 2.5rem -2.5rem -3rem;
+      padding: 1.75rem 2.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(40, 40, 80, 0.25);
+    }
+
+    @media (max-width: 480px) {
+      .cover h1 { font-size: 1.5rem; }
+      .story { padding: 1.75rem 1.5rem 2rem; }
+      .ending { margin: 2rem -1.5rem -2rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <article class="book">
+
+    <header class="cover">
+      <span class="cover-emoji">🐢⛈️</span>
+      <h1>The Secret Garden<br>and the Big Storm</h1>
+    </header>
+
+    <section class="story">
+
+      <p>Gabu and Daru, two tortoise friends, still live in their beautiful garden. Since their great tomato adventure, they are a good team. Daru loves to find new things. Gabu is always careful and slow.</p>
+      <p>But sometimes, Daru wants to see what is on the other side of the tall wooden fence.</p>
+
+      <div class="divider">🌿 🌿 🌿</div>
+
+      <h2>The Strange Noise</h2>
+
+      <p>One afternoon, Gabu was sleeping under a big leaf. Daru heard a strange sound near the fence. <span class="sound">Scritch, scratch, scritch.</span></p>
+      <p>Daru ran quickly to the wooden fence. He saw a small hole at the bottom — just big enough for a young tortoise to go through.</p>
+      <p>Daru looked through the hole. On the other side, he saw something beautiful. There were big purple flowers, long green grass, and a big bush full of yellow berries. It looked like a secret garden!</p>
+      <p class="dialogue">"Gabu! Wake up!" Daru called. "You need to see this!"</p>
+      <p>Gabu opened his eyes slowly.</p>
+      <p class="dialogue">"What is it, Daru? Is it tomatoes?"</p>
+      <p class="dialogue">"No, it is better! There is a hole under the fence. There is a whole new world out there!"</p>
+      <p>Gabu walked over and looked through the hole. He shook his head slowly.</p>
+      <p class="dialogue">"I don't know, Daru. Our garden is safe. Out there looks dangerous. And look at the sky. It is grey. I think a storm is coming."</p>
+      <p class="dialogue">"Oh, come on, Gabu! Just a quick look," Daru said. "We will be back before it rains."</p>
+      <p>Gabu looked at the sky one more time. He did not want his friend to go alone.</p>
+      <p class="dialogue">"Okay. But we must be very careful."</p>
+
+      <h2>Into the Wild</h2>
+
+      <p>One after the other, the two tortoises went through the hole. The world outside was different. The grass was very tall. It was hard to see where they were going.</p>
+      <p>Daru ran to the yellow berries.</p>
+      <p class="dialogue">"Look at these! They taste like honey!" he said, eating one happily.</p>
+      <p>Gabu ate one too. It was very good. But he kept looking up at the sky. The dark clouds were moving fast. The wind was getting strong. Leaves flew through the air.</p>
+      <p class="dialogue">"Daru, we need to go back now," Gabu said. "The storm is here."</p>
+      <p>Before Daru could answer, a big <span class="sound">BOOM</span> of thunder shook the ground. Then the rain started. It was not a little rain. It was a very big, cold rain.</p>
+
+      <h2>Lost in the Rain</h2>
+
+      <p>The two tortoises turned around to find the hole in the fence. But the tall grass was moving in the wind. Everything looked different now.</p>
+      <p class="dialogue">"Where is the fence?" Daru asked. His voice was shaking. For the first time, he was scared.</p>
+      <p class="dialogue">"I can't see it!" Gabu said.</p>
+      <p>The rain was hitting their shells hard. The ground was very wet.</p>
+      <p>Then the water began to move fast along the ground, right toward them. The water was strong. It began to push them away. Daru tried to walk fast, but his feet slipped. He began to fall into a big puddle.</p>
+      <p class="dialogue">"Gabu! The water is too strong!" Daru cried.</p>
+      <p>Gabu looked around carefully. He saw a big, old tree root near the puddle. There was a small, dry space under it.</p>
+      <p class="dialogue">"Daru! Come to that root! Go under it!"</p>
+      <p>Daru got up fast and ran through the mud. He got under the root. Then he turned around and put out his front legs to help his friend. Gabu held the root with his front claws. Daru pulled hard, and Gabu climbed up safely.</p>
+
+      <h2>Waiting it Out</h2>
+
+      <p>Both friends were safe under the tree root. It was dark and damp, but the rain and wind could not reach them.</p>
+      <p>Daru was shaking.</p>
+      <p class="dialogue">"I am sorry, Gabu," he said quietly. "You were right. I wanted to see the new garden, but now we are lost."</p>
+      <p>Gabu sat close to his friend to keep him warm.</p>
+      <p class="dialogue">"It is okay, Daru. You want to see new things, and that is not bad. But we must always look at the sky first! We are safe now. We just have to wait."</p>
+      <p>They stayed under the root for a long time. They listened to the rain. They talked about good food and the warm sun.</p>
+
+      <h2>The Way Home</h2>
+
+      <p>After a long time, the rain stopped. The sun came out. The wet leaves were bright and beautiful.</p>
+      <p>Gabu and Daru came out. The tall grass was flat now. They could see the wooden fence far away.</p>
+      <p>They walked back together. They stepped carefully over the mud. They found the hole and went back into their own garden. The grass felt good. The sun felt warm and safe.</p>
+      <p class="dialogue">"Home," Gabu said, putting his head on the grass.</p>
+      <p class="dialogue">"Yes," Daru said, sitting next to him. "But look!"</p>
+      <p class="dialogue">"What?" Gabu asked.</p>
+      <p>Daru smiled and opened his mouth. He had one last yellow berry. He saved it from the storm.</p>
+      <p class="dialogue">"We have a story and a snack."</p>
+
+      <div class="ending">
+        The two friends shared the berry and fell asleep<br>under the clear blue sky, happy to be home. 🌤️
+      </div>
+
+    </section>
+  </article>
+</body>
+</html>

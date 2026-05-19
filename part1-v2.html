@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Great Tomato Adventure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #fdf6e3;
+      color: #3d2b1f;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .book {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fffdf5;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(100, 60, 20, 0.12);
+      overflow: hidden;
+    }
+
+    /* Cover header */
+    .cover {
+      background: linear-gradient(135deg, #a8d5a2 0%, #f9c74f 100%);
+      padding: 3rem 2.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .cover-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 0.75rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+
+    .cover h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(80, 40, 0, 0.2);
+      line-height: 1.25;
+    }
+
+    /* Story body */
+    .story {
+      padding: 2.5rem 2.5rem 3rem;
+    }
+
+    .story p {
+      font-size: 1.125rem;
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Chapter headings */
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #e07b39;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 2.25rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 1.1em;
+      background: #a8d5a2;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Dialogue */
+    .dialogue {
+      background: #f0f9ee;
+      border-left: 4px solid #a8d5a2;
+      border-radius: 0 12px 12px 0;
+      padding: 0.6rem 1rem 0.6rem 1.1rem;
+      margin: 0.4rem 0 0.4rem 0.5rem;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #2d5a27;
+    }
+
+    /* Sound words */
+    .sound {
+      font-weight: 700;
+      font-style: italic;
+      color: #e07b39;
+    }
+
+    /* Divider between chapters */
+    .divider {
+      text-align: center;
+      margin: 2rem 0 0;
+      font-size: 1.3rem;
+      opacity: 0.35;
+      letter-spacing: 0.4em;
+    }
+
+    /* Footer */
+    .ending {
+      background: linear-gradient(135deg, #f9c74f 0%, #a8d5a2 100%);
+      margin: 2.5rem -2.5rem -3rem;
+      padding: 1.75rem 2.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(80, 40, 0, 0.2);
+      border-radius: 0 0 0 0;
+    }
+
+    @media (max-width: 480px) {
+      .cover h1 { font-size: 1.5rem; }
+      .story { padding: 1.75rem 1.5rem 2rem; }
+      .ending { margin: 2rem -1.5rem -2rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <article class="book">
+
+    <header class="cover">
+      <span class="cover-emoji">🐢</span>
+      <h1>The Great Tomato Adventure</h1>
+    </header>
+
+    <section class="story">
+
+      <p>Gabu and Daru are two young tortoises. They are friends, but they are very different.</p>
+      <p>Gabu is big. He always looks carefully before every step. Daru is small, but his legs are quick. He loves to discover new things in the garden. They live in a beautiful green garden.</p>
+
+      <div class="divider">🍃 🍃 🍃</div>
+
+      <h2>A Hungry Morning</h2>
+
+      <p>One sunny morning, Daru wakes up early. His nose twitches. Something smells wonderful!</p>
+      <p class="dialogue">"Gabu! Wake up!" Daru says. "I can smell something delicious. Let's go find it!"</p>
+      <p>Gabu opens his eyes slowly. He looks around carefully.</p>
+      <p class="dialogue">"Mmm... good morning, Daru. What do you smell?"</p>
+      <p class="dialogue">"Tomatoes!" Daru says. "The big, red, sweet tomatoes near the big tree. Let's go now!"</p>
+
+      <h2>The Long Walk</h2>
+
+      <p>The tomatoes are far away. For a tortoise, it is a very long walk.</p>
+      <p>Daru walks quickly. <span class="sound">Step, step, step.</span></p>
+      <p class="dialogue">"Come on, Gabu! This way!" Daru calls.</p>
+      <p>Gabu walks slowly. <span class="sound">Step... step... step.</span></p>
+      <p class="dialogue">"Wait, Daru," Gabu says. "We should be careful. Let me check the path first."</p>
+      <p>Suddenly, there is a loud crash. Daru has run too fast and tipped over onto his side near a big brown rock.</p>
+      <p class="dialogue">"Oh no! Help me, Gabu!" Daru cries.</p>
+
+      <h2>Gabu to the Rescue</h2>
+
+      <p>Gabu walks slowly and carefully to his friend. He uses his big, strong body and pushes Daru.</p>
+      <p><span class="sound">One, two, three... push!</span></p>
+      <p>Daru is back on his feet.</p>
+      <p class="dialogue">"Thank you, Gabu!" Daru says. "You are big and strong. You always know what to do."</p>
+      <p class="dialogue">Gabu smiles. "We are a team. Now, let's walk together."</p>
+
+      <h2>The Sweet Reward</h2>
+
+      <p>They walk together. Daru walks a little slower. Gabu follows carefully beside him. Finally, they arrive at the big tree. Under the green leaves, they see five big, red tomatoes.</p>
+      <p>Gabu and Daru eat the tomatoes. <span class="sound">Chomp, chomp, chomp.</span> The tomatoes are sweet and delicious.</p>
+      <p class="dialogue">"This is a great day," Daru says, closing his eyes.</p>
+      <p class="dialogue">"Yes," Gabu says, sitting next to his friend. "You are the best friend in the world."</p>
+
+      <div class="ending">
+        Now, the two tortoises are full and happy.<br>They sleep together under the warm sun. 🌞
+      </div>
+
+    </section>
+  </article>
+</body>
+</html>
