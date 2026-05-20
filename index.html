@@ -201,12 +201,7 @@
     .card[data-part="3"] .progress-fill { background: #f9a56a; }
     .card[data-part="4"] .progress-fill { background: #c0614a; }
 
-    /* Read links */
-    .read-links {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 0.25rem;
-    }
+    /* Read link */
     .read-link {
       display: inline-block;
       font-size: 0.82rem;
@@ -274,10 +269,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <div class="read-links">
-        <a class="read-link" href="stories/a1-part1.html">📖 Read (A1)</a>
-        <a class="read-link" href="stories/a2-part1.html">📖 Read (A2)</a>
-      </div>
+      <a class="read-link" href="stories/a1-part1.html" data-a1="stories/a1-part1.html" data-a2="stories/a2-part1.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part1.mp3" preload="none"></audio>
     </div>
   </div>
@@ -300,10 +292,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <div class="read-links">
-        <a class="read-link" href="stories/a1-part2.html">📖 Read (A1)</a>
-        <a class="read-link" href="stories/a2-part2.html">📖 Read (A2)</a>
-      </div>
+      <a class="read-link" href="stories/a1-part2.html" data-a1="stories/a1-part2.html" data-a2="stories/a2-part2.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part2.mp3" preload="none"></audio>
     </div>
   </div>
@@ -326,10 +315,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <div class="read-links">
-        <a class="read-link" href="stories/a1-part3.html">📖 Read (A1)</a>
-        <a class="read-link" href="stories/a2-part3.html">📖 Read (A2)</a>
-      </div>
+      <a class="read-link" href="stories/a1-part3.html" data-a1="stories/a1-part3.html" data-a2="stories/a2-part3.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part3.mp3" preload="none"></audio>
     </div>
   </div>
@@ -352,10 +338,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <div class="read-links">
-        <a class="read-link" href="stories/a1-part4.html">📖 Read (A1)</a>
-        <a class="read-link" href="stories/a2-part4.html">📖 Read (A2)</a>
-      </div>
+      <a class="read-link" href="stories/a1-part4.html" data-a1="stories/a1-part4.html" data-a2="stories/a2-part4.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part4.mp3" preload="none"></audio>
     </div>
   </div>
@@ -389,6 +372,8 @@
       card.querySelector('.progress-fill').style.width = '0%';
       audio.src = audioSrc(voice, level, i + 1);
       audio.load();
+      const link = card.querySelector('.read-link');
+      link.href = link.dataset[level];
     });
   }
 
