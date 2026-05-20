@@ -74,6 +74,25 @@
 
     .voice-bar select:focus { border-color: #e07b39; }
 
+    .level-toggle { display: flex; gap: 0.35rem; }
+    .level-btn {
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 0.4rem 0.8rem;
+      border: 2px solid #e8d0b8;
+      border-radius: 8px;
+      background: #fdf6e3;
+      color: #9a7a5a;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .level-btn.active {
+      background: #e07b39;
+      border-color: #e07b39;
+      color: #fff;
+    }
+
     /* Story cards grid */
     .cards {
       max-width: 720px;
@@ -212,6 +231,11 @@
 </header>
 
 <div class="voice-bar">
+  <label>📚 Level:</label>
+  <div class="level-toggle">
+    <button class="level-btn active" data-level="a1">A1</button>
+    <button class="level-btn" data-level="a2">A2</button>
+  </div>
   <label for="voiceSelect">🔊 Voice:</label>
   <select id="voiceSelect">
     <optgroup label="US English">
@@ -341,6 +365,13 @@
 <script>
   const voiceSelect = document.getElementById('voiceSelect');
   const cards = document.querySelectorAll('.card');
+  const levelBtns = document.querySelectorAll('.level-btn');
+  let currentLevel = 'a1';
+
+  function audioSrc(voice, level, n) {
+    const prefix = level === 'a2' ? 'a2-' : '';
+    return `audio/${voice}/${prefix}part${n}.mp3`;
+  }
 
   function fmt(sec) {
     if (isNaN(sec)) return '0:00';
@@ -349,8 +380,19 @@
     return `${m}:${s}`;
   }
 
+  function switchAudio(level) {
+    const voice = voiceSelect.value;
+    cards.forEach((card, i) => {
+      const audio = card.querySelector('audio');
+      audio.pause();
+      card.querySelector('.play-btn').textContent = '▶';
+      card.querySelector('.progress-fill').style.width = '0%';
+      audio.src = audioSrc(voice, level, i + 1);
+      audio.load();
+    });
+  }
+
   cards.forEach((card, i) => {
-    const part = `part${i + 1}`;
     const audio = card.querySelector('audio');
     const btn = card.querySelector('.play-btn');
     const fill = card.querySelector('.progress-fill');
@@ -375,7 +417,6 @@
 
     btn.addEventListener('click', () => {
       const playing = !audio.paused;
-      // pause all others
       cards.forEach(c => {
         const a = c.querySelector('audio');
         if (a !== audio && !a.paused) {
@@ -401,16 +442,16 @@
   });
 
   voiceSelect.addEventListener('change', () => {
-    const voice = voiceSelect.value;
-    cards.forEach((card, i) => {
-      const part = `part${i + 1}`;
-      const audio = card.querySelector('audio');
-      const wasPlaying = !audio.paused;
-      const currentTime = audio.currentTime;
-      audio.pause();
-      card.querySelector('.play-btn').textContent = '▶';
-      audio.src = `audio/${voice}/${part}.mp3`;
-      audio.load();
+    switchAudio(currentLevel);
+  });
+
+  levelBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const level = btn.dataset.level;
+      if (level === currentLevel) return;
+      currentLevel = level;
+      levelBtns.forEach(b => b.classList.toggle('active', b.dataset.level === level));
+      switchAudio(level);
     });
   });
 </script>

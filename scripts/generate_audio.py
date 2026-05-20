@@ -22,6 +22,10 @@ PARTS = [
     ("part2", "part2-v2.md"),
     ("part3", "part3-v2.md"),
     ("part4", "part4-v1.md"),
+    ("a2-part1", "a2-part1.md"),
+    ("a2-part2", "a2-part2.md"),
+    ("a2-part3", "a2-part3.md"),
+    ("a2-part4", "a2-part4.md"),
 ]
 
 
@@ -53,12 +57,12 @@ async def generate(part_name: str, text: str, voice: str, out_path: Path) -> Non
 
 
 async def main() -> None:
-    base = Path(__file__).parent
+    base = Path(__file__).parent.parent  # project root
     audio_dir = base / "audio"
 
     tasks = []
     for part_name, md_file in PARTS:
-        md_path = base / md_file
+        md_path = base / "src" / md_file
         if not md_path.exists():
             print(f"[skip] {md_file} not found")
             continue
