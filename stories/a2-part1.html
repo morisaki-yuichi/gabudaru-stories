@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Great Tomato Adventure</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #fdf6e3;
+      color: #3d2b1f;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .book {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fffdf5;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(100, 60, 20, 0.12);
+      overflow: hidden;
+    }
+
+    /* Cover header */
+    .cover {
+      background: linear-gradient(135deg, #a8d5a2 0%, #f9c74f 100%);
+      padding: 3rem 2.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .cover-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 0.75rem;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+
+    .cover h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(80, 40, 0, 0.2);
+      line-height: 1.25;
+    }
+
+    /* Story body */
+    .story {
+      padding: 2.5rem 2.5rem 3rem;
+    }
+
+    .story p {
+      font-size: 1.125rem;
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Chapter headings */
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #e07b39;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 2.25rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 1.1em;
+      background: #a8d5a2;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Dialogue */
+    .dialogue {
+      background: #f0f9ee;
+      border-left: 4px solid #a8d5a2;
+      border-radius: 0 12px 12px 0;
+      padding: 0.6rem 1rem 0.6rem 1.1rem;
+      margin: 0.4rem 0 0.4rem 0.5rem;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #2d5a27;
+    }
+
+    /* Sound words */
+    .sound {
+      font-weight: 700;
+      font-style: italic;
+      color: #e07b39;
+    }
+
+    /* Divider between chapters */
+    .divider {
+      text-align: center;
+      margin: 2rem 0 0;
+      font-size: 1.3rem;
+      opacity: 0.35;
+      letter-spacing: 0.4em;
+    }
+
+    /* Footer */
+    .ending {
+      background: linear-gradient(135deg, #f9c74f 0%, #a8d5a2 100%);
+      margin: 2.5rem -2.5rem -3rem;
+      padding: 1.75rem 2.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(80, 40, 0, 0.2);
+      border-radius: 0 0 0 0;
+    }
+
+    @media (max-width: 480px) {
+      .cover h1 { font-size: 1.5rem; }
+      .story { padding: 1.75rem 1.5rem 2rem; }
+      .ending { margin: 2rem -1.5rem -2rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <article class="book">
+
+    <header class="cover">
+      <span class="cover-emoji">🐢</span>
+      <h1>The Great Tomato Adventure</h1>
+    </header>
+
+    <section class="story">
+
+      <p>Gabu and Daru are two young tortoises who have lived in the same beautiful green garden since they were born. They are the best of friends, although they couldn't be more different. Gabu is the bigger one, and he always watches the path carefully before he takes each step. Daru is smaller, but his legs move faster, and he is always eager to discover something new.</p>
+
+      <div class="divider">🍃 🍃 🍃</div>
+
+      <h2>A Hungry Morning</h2>
+
+      <p>One sunny morning, Daru woke up earlier than usual. As soon as he lifted his head from the cool earth, his nose began to twitch. Something nearby smelled absolutely wonderful — sweet and warm, like the best part of summer.</p>
+      <p class="dialogue">"Gabu! Wake up!" Daru called, nudging his friend. "Something is smelling so good. I have to find it right now!"</p>
+      <p>Gabu opened his eyes slowly and blinked at the bright morning sky.</p>
+      <p class="dialogue">"Good morning, Daru. What exactly are you smelling?"</p>
+      <p class="dialogue">"Tomatoes!" Daru said, already moving. "The big, red ones near the old tree — you remember them. They smell perfect this morning. Let's go before someone else finds them!"</p>
+
+      <h2>The Long Walk</h2>
+
+      <p>For a tortoise, walking to the old tree is a very long journey. Daru moved as quickly as his legs could carry him. <span class="sound">Step, step, step.</span></p>
+      <p class="dialogue">"Come on, Gabu! Keep up!" he called back over his shoulder.</p>
+      <p>Gabu walked at his usual careful pace, watching the ground as he moved. "Try to slow down a little, Daru," he said. "The path might be uneven."</p>
+      <p>But before Gabu could finish his sentence, there was a loud crash. Daru had been moving too fast and had tipped over onto his side next to a large brown rock.</p>
+      <p class="dialogue">"I can't get back up! Gabu, please help me!" Daru cried.</p>
+
+      <h2>Gabu to the Rescue</h2>
+
+      <p>Gabu walked slowly and carefully to where his friend was lying. Without saying a word, he pressed his big, strong body against Daru's shell and pushed with all his strength.</p>
+      <p><span class="sound">One, two, three… push!</span></p>
+      <p>After a few tries, Daru was back on his feet, a little shaken but completely unhurt.</p>
+      <p class="dialogue">"Thank you so much, Gabu," Daru said, catching his breath. "You're always calm and steady, even when things go wrong. I'm so lucky to have you."</p>
+      <p class="dialogue">"We look after each other," Gabu said with a quiet smile. "That's what it means to be a team. Now, shall we walk together this time?"</p>
+
+      <h2>The Sweet Reward</h2>
+
+      <p>After that, they walked side by side. Daru moved more carefully, and Gabu kept a steady pace beside him. It was still a long walk, but when they finally arrived at the old tree, they found five beautiful red tomatoes lying in the cool shade beneath its wide leaves.</p>
+      <p>They ate together, enjoying every single bite. <span class="sound">Chomp, chomp, chomp.</span> The tomatoes were riper and sweeter than they had expected.</p>
+      <p class="dialogue">"These are the most delicious tomatoes I have ever tasted," Daru said, closing his eyes happily.</p>
+      <p class="dialogue">"I think everything tastes better when you share it," Gabu said, sitting close beside his friend.</p>
+
+      <div class="ending">
+        The two tortoises are full, content, and happy.<br>They fall asleep side by side under the warm afternoon sun. 🌞
+      </div>
+
+    </section>
+  </article>
+</body>
+</html>
