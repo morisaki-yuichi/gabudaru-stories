@@ -42,6 +42,14 @@ PARTS = [
     ("b1-part6", "b1-part6.md"),
     ("b2-part5", "b2-part5.md"),
     ("b2-part6", "b2-part6.md"),
+    ("part7", "a1-part7.md"),
+    ("part8", "a1-part8.md"),
+    ("a2-part7", "a2-part7.md"),
+    ("a2-part8", "a2-part8.md"),
+    ("b1-part7", "b1-part7.md"),
+    ("b1-part8", "b1-part8.md"),
+    ("b2-part7", "b2-part7.md"),
+    ("b2-part8", "b2-part8.md"),
 ]
 
 
