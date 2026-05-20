@@ -230,6 +230,8 @@
   <div class="level-toggle">
     <button class="level-btn active" data-level="a1">A1</button>
     <button class="level-btn" data-level="a2">A2</button>
+    <button class="level-btn" data-level="b1">B1</button>
+    <button class="level-btn" data-level="b2">B2</button>
   </div>
   <label for="voiceSelect">🔊 Voice:</label>
   <select id="voiceSelect">
@@ -269,7 +271,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <a class="read-link" href="stories/a1-part1.html" data-a1="stories/a1-part1.html" data-a2="stories/a2-part1.html">📖 Read the story</a>
+      <a class="read-link" href="stories/a1-part1.html" data-a1="stories/a1-part1.html" data-a2="stories/a2-part1.html" data-b1="stories/b1-part1.html" data-b2="stories/b2-part1.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part1.mp3" preload="none"></audio>
     </div>
   </div>
@@ -292,7 +294,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <a class="read-link" href="stories/a1-part2.html" data-a1="stories/a1-part2.html" data-a2="stories/a2-part2.html">📖 Read the story</a>
+      <a class="read-link" href="stories/a1-part2.html" data-a1="stories/a1-part2.html" data-a2="stories/a2-part2.html" data-b1="stories/b1-part2.html" data-b2="stories/b2-part2.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part2.mp3" preload="none"></audio>
     </div>
   </div>
@@ -315,7 +317,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <a class="read-link" href="stories/a1-part3.html" data-a1="stories/a1-part3.html" data-a2="stories/a2-part3.html">📖 Read the story</a>
+      <a class="read-link" href="stories/a1-part3.html" data-a1="stories/a1-part3.html" data-a2="stories/a2-part3.html" data-b1="stories/b1-part3.html" data-b2="stories/b2-part3.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part3.mp3" preload="none"></audio>
     </div>
   </div>
@@ -338,7 +340,7 @@
           <span class="time">0:00 / 0:00</span>
         </div>
       </div>
-      <a class="read-link" href="stories/a1-part4.html" data-a1="stories/a1-part4.html" data-a2="stories/a2-part4.html">📖 Read the story</a>
+      <a class="read-link" href="stories/a1-part4.html" data-a1="stories/a1-part4.html" data-a2="stories/a2-part4.html" data-b1="stories/b1-part4.html" data-b2="stories/b2-part4.html">📖 Read the story</a>
       <audio src="audio/en-US-AvaNeural/part4.mp3" preload="none"></audio>
     </div>
   </div>
@@ -352,7 +354,7 @@
   let currentLevel = 'a1';
 
   function audioSrc(voice, level, n) {
-    const prefix = level === 'a2' ? 'a2-' : '';
+    const prefix = level === 'a1' ? '' : `${level}-`;
     return `audio/${voice}/${prefix}part${n}.mp3`;
   }
 
