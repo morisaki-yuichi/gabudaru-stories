@@ -223,9 +223,54 @@
     }
     .read-link:hover { text-decoration: underline; }
 
+    /* Another Stories banner */
+    .another-banner {
+      max-width: 720px;
+      margin: 2.5rem auto 0;
+      background: linear-gradient(135deg, #2c4a6a, #4a6a5a);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(30,50,70,0.18);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .another-banner:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(30,50,70,0.24);
+    }
+    .another-banner .moon { font-size: 2.5rem; line-height: 1; flex-shrink: 0; }
+    .another-banner .ab-text { flex: 1; }
+    .another-banner .ab-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0.2rem;
+    }
+    .another-banner h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+    .another-banner p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .another-banner .ab-arrow {
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.6);
+      flex-shrink: 0;
+    }
+
     @media (max-width: 480px) {
       header h1 { font-size: 1.5rem; }
       .cards { grid-template-columns: 1fr; }
+      .another-banner { padding: 1.25rem 1.25rem; }
     }
   </style>
 </head>
@@ -450,6 +495,16 @@
   </div>
 
 </div>
+
+<a class="another-banner" href="another-stories/01-01.html">
+  <span class="moon">🌙</span>
+  <div class="ab-text">
+    <div class="ab-label">Another Series</div>
+    <h2>Another Stories</h2>
+    <p>365 bedtime stories — one for each night of the year</p>
+  </div>
+  <span class="ab-arrow">→</span>
+</a>
 
 <script>
   const voiceSelect = document.getElementById('voiceSelect');
