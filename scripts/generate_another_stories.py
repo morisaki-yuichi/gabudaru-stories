@@ -152,6 +152,75 @@ TEMPLATE = """\
 
 AUDIO_DIR = Path(__file__).parent.parent / "audio" / "another-stories"
 
+INDEX_TEMPLATE = """\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Another Stories</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background: #fdf6e3; color: #3d2b1f; min-height: 100vh; padding: 1.5rem 1rem 4rem; }
+    .page { max-width: 860px; margin: 0 auto; }
+    .hd { text-align: center; padding: 2rem 1rem 2.5rem; }
+    .hd h1 { font-size: 1.5rem; font-weight: 800; color: #5a3a1a; margin-bottom: 0.3rem; }
+    .hd p { font-size: 0.88rem; color: #9a7a5a; }
+    .back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.82rem; font-weight: 700; color: #9a7a5a; text-decoration: none; padding: 0.3rem 0.75rem; background: #f5ede0; border-radius: 8px; }
+    .back:hover { background: #e8d0b8; }
+    .months { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .mc { background: #fffdf5; border-radius: 14px; box-shadow: 0 3px 14px rgba(100,60,20,0.1); overflow: hidden; }
+    .mh { padding: 0.55rem 0.75rem; font-size: 0.82rem; font-weight: 800; color: #fff; letter-spacing: 0.04em; }
+    .days { display: grid; grid-template-columns: repeat(7, 1fr); padding: 0.6rem 0.5rem 0.7rem; gap: 1px; }
+    .days a { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 2rem; font-size: 0.8rem; font-weight: 700; color: #7a5a3a; text-decoration: none; border-radius: 5px; }
+    .days a:hover { background: #f5ede0; }
+    .days a.au::after { content: ''; width: 4px; height: 4px; background: #9a7a5a; border-radius: 50%; margin-top: 1px; }
+    .days .em { height: 2rem; }
+    @media (max-width: 640px) { .months { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 360px) { .months { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back" href="../index.html">← Home</a>
+    <div class="hd">
+      <h1>Another Stories</h1>
+      <p>365 bedtime stories — one for each night of the year</p>
+    </div>
+    <div class="months">
+__MONTHS__
+    </div>
+  </div>
+</body>
+</html>"""
+
+
+def generate_index():
+    audio_dates = {p.stem for p in AUDIO_DIR.glob("??-??.mp3")}
+    blocks = []
+    for month in range(1, 13):
+        grad = SEASON_GRADIENT[season(month)]
+        days = MONTH_DAYS[month]
+        cells = []
+        for day in range(1, days + 1):
+            date = f"{month:02d}-{day:02d}"
+            cls = " au" if date in audio_dates else ""
+            cells.append(f'<a href="{date}.html" class="{cls.strip()}">{day}</a>' if cls
+                         else f'<a href="{date}.html">{day}</a>')
+        pad = (7 - days % 7) % 7
+        cells.extend(['<div class="em"></div>'] * pad)
+        blocks.append(
+            f'      <div class="mc">\n'
+            f'        <div class="mh" style="background:linear-gradient({grad})">{MONTH_NAMES[month]}</div>\n'
+            f'        <div class="days">{"".join(cells)}</div>\n'
+            f'      </div>'
+        )
+    html = INDEX_TEMPLATE.replace("__MONTHS__", "\n".join(blocks))
+    (OUT / "index.html").write_text(html, encoding="utf-8")
+    print("  wrote: another-stories/index.html")
+
 
 def render(story, has_audio=False):
     mm, dd = story["date"].split("-")
@@ -194,6 +263,7 @@ def generate():
         fname.write_text(html, encoding="utf-8")
         flag = " [audio]" if has_audio else ""
         print(f"  wrote: another-stories/{date}.html{flag}")
+    generate_index()
     print(f"\nDone. {len(STORIES)} files written.")
 
 
