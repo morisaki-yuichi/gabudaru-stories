@@ -39,7 +39,47 @@
       <h1>Daru's Idea</h1>
       <div class="friends"><span class="fbadge">🐢 Gabu</span><span class="fbadge">🐢 Daru</span></div>
     </header>
-
+    <div class="player">
+      <button class="play-btn" id="playBtn" aria-label="Play">▶</button>
+      <div class="play-wrap" id="playWrap">
+        <div class="play-bar" id="playBar"></div>
+      </div>
+      <span class="play-time" id="playTime">0:00</span>
+      <audio id="playAudio" src="../audio/another-stories/06-10.mp3" preload="none"></audio>
+    </div>
+    <script>
+    (function() {
+      var audio = document.getElementById('playAudio');
+      var btn = document.getElementById('playBtn');
+      var bar = document.getElementById('playBar');
+      var wrap = document.getElementById('playWrap');
+      var lbl = document.getElementById('playTime');
+      function fmt(s) {
+        var m = Math.floor(s / 60), sec = Math.floor(s % 60);
+        return m + ':' + (sec < 10 ? '0' : '') + sec;
+      }
+      btn.addEventListener('click', function() {
+        if (audio.paused) { audio.play(); btn.textContent = '⏸'; }
+        else { audio.pause(); btn.textContent = '▶'; }
+      });
+      audio.addEventListener('timeupdate', function() {
+        if (audio.duration) {
+          bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+          lbl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+        }
+      });
+      audio.addEventListener('ended', function() {
+        btn.textContent = '▶';
+        bar.style.width = '0';
+        lbl.textContent = '0:00 / ' + fmt(audio.duration);
+      });
+      wrap.addEventListener('click', function(e) {
+        if (!audio.duration) return;
+        var r = wrap.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+      });
+    })();
+    </script>
     <section class="story">
       <p>Daru had an idea.</p>
       <p>"We should build something," he said at breakfast.</p>
