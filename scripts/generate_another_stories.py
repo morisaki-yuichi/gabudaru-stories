@@ -51,6 +51,50 @@ def paras_html(text):
     blocks = [b.strip() for b in text.strip().split("\n\n") if b.strip()]
     return "\n".join(f"      <p>{b}</p>" for b in blocks)
 
+PLAYER_TEMPLATE = """\
+    <div class="player">
+      <button class="play-btn" id="playBtn" aria-label="Play">▶</button>
+      <div class="play-wrap" id="playWrap">
+        <div class="play-bar" id="playBar"></div>
+      </div>
+      <span class="play-time" id="playTime">0:00</span>
+      <audio id="playAudio" src="../audio/another-stories/__DATE__.mp3" preload="none"></audio>
+    </div>
+    <script>
+    (function() {
+      var audio = document.getElementById('playAudio');
+      var btn = document.getElementById('playBtn');
+      var bar = document.getElementById('playBar');
+      var wrap = document.getElementById('playWrap');
+      var lbl = document.getElementById('playTime');
+      function fmt(s) {
+        var m = Math.floor(s / 60), sec = Math.floor(s % 60);
+        return m + ':' + (sec < 10 ? '0' : '') + sec;
+      }
+      btn.addEventListener('click', function() {
+        if (audio.paused) { audio.play(); btn.textContent = '⏸'; }
+        else { audio.pause(); btn.textContent = '▶'; }
+      });
+      audio.addEventListener('timeupdate', function() {
+        if (audio.duration) {
+          bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+          lbl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+        }
+      });
+      audio.addEventListener('ended', function() {
+        btn.textContent = '▶';
+        bar.style.width = '0';
+        lbl.textContent = '0:00 / ' + fmt(audio.duration);
+      });
+      wrap.addEventListener('click', function(e) {
+        if (!audio.duration) return;
+        var r = wrap.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+      });
+    })();
+    </script>"""
+
+
 TEMPLATE = """\
 <!DOCTYPE html>
 <html lang="en">
@@ -72,11 +116,17 @@ TEMPLATE = """\
     .story {{ padding: 2rem 2.25rem 2.5rem; }}
     .story p {{ font-size: 1.125rem; line-height: 2.1; margin-bottom: 0.9rem; }}
     .story p:last-child {{ margin-bottom: 0; }}
+    .player {{ display: flex; align-items: center; gap: 0.75rem; padding: 1rem 2.25rem; border-top: 2px dashed #e8d0b8; }}
+    .play-btn {{ width: 2.25rem; height: 2.25rem; border-radius: 50%; border: none; background: #9a7a5a; color: #fff; font-size: 0.85rem; cursor: pointer; flex-shrink: 0; }}
+    .play-btn:hover {{ background: #7a5a3a; }}
+    .play-wrap {{ flex: 1; height: 5px; background: #e8d0b8; border-radius: 3px; cursor: pointer; }}
+    .play-bar {{ height: 100%; background: #9a7a5a; border-radius: 3px; width: 0; }}
+    .play-time {{ font-size: 0.72rem; font-weight: 700; color: #b8987a; white-space: nowrap; }}
     .nav {{ display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 2rem; border-top: 2px dashed #e8d0b8; gap: 0.5rem; }}
     .nav a {{ font-size: 0.88rem; font-weight: 700; color: #9a7a5a; text-decoration: none; padding: 0.35rem 0.75rem; border-radius: 8px; background: #f5ede0; white-space: nowrap; }}
     .nav a:hover {{ background: #e8d0b8; }}
     .dc {{ font-size: 0.78rem; color: #b8987a; font-weight: 700; white-space: nowrap; }}
-    @media (max-width: 480px) {{ .cover h1 {{ font-size: 1.25rem; }} .story p {{ font-size: 1rem; }} .story {{ padding: 1.5rem 1.5rem 2rem; }} .nav {{ padding: 0.75rem 1.25rem; }} }}
+    @media (max-width: 480px) {{ .cover h1 {{ font-size: 1.25rem; }} .story p {{ font-size: 1rem; }} .story {{ padding: 1.5rem 1.5rem 2rem; }} .nav {{ padding: 0.75rem 1.25rem; }} .player {{ padding: 0.85rem 1.5rem; }} }}
   </style>
 </head>
 <body>
@@ -89,6 +139,7 @@ TEMPLATE = """\
     <section class="story">
 {paragraphs}
     </section>
+{player}
     <nav class="nav">
       {prev_link}
       <span class="dc">Day {daynum} / 365</span>
@@ -99,9 +150,13 @@ TEMPLATE = """\
 </html>"""
 
 
-def render(story):
+AUDIO_DIR = Path(__file__).parent.parent / "audio" / "another-stories"
+
+
+def render(story, has_audio=False):
     mm, dd = story["date"].split("-")
     month, day = int(mm), int(dd)
+    date = story["date"]
     chars = characters(month, day)
     grad = SEASON_GRADIENT[season(month)]
     badges = "".join(f'<span class="fbadge">{e} {n}</span>' for e, n in chars)
@@ -114,6 +169,7 @@ def render(story):
         return f'<a href="{m:02d}-{d:02d}.html">{label}</a>'
     prev_link = link(prev, "← Previous")
     next_link = link(next_, "Next →")
+    player = PLAYER_TEMPLATE.replace("__DATE__", date) if has_audio else ""
     return TEMPLATE.format(
         title=story["title"],
         mname=MONTH_NAMES[month],
@@ -124,16 +180,20 @@ def render(story):
         daynum=daynum,
         prev_link=prev_link,
         next_link=next_link,
+        player=player,
     )
 
 
 def generate():
     OUT.mkdir(exist_ok=True)
     for story in STORIES:
-        html = render(story)
-        fname = OUT / f"{story['date']}.html"
+        date = story["date"]
+        has_audio = (AUDIO_DIR / f"{date}.mp3").exists()
+        html = render(story, has_audio=has_audio)
+        fname = OUT / f"{date}.html"
         fname.write_text(html, encoding="utf-8")
-        print(f"  wrote: another-stories/{story['date']}.html")
+        flag = " [audio]" if has_audio else ""
+        print(f"  wrote: another-stories/{date}.html{flag}")
     print(f"\nDone. {len(STORIES)} files written.")
 
 
