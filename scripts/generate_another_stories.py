@@ -116,7 +116,7 @@ TEMPLATE = """\
     .story {{ padding: 2rem 2.25rem 2.5rem; }}
     .story p {{ font-size: 1.125rem; line-height: 2.1; margin-bottom: 0.9rem; }}
     .story p:last-child {{ margin-bottom: 0; }}
-    .player {{ display: flex; align-items: center; gap: 0.75rem; padding: 1rem 2.25rem; border-top: 2px dashed #e8d0b8; }}
+    .player {{ display: flex; align-items: center; gap: 0.75rem; padding: 1rem 2.25rem; border-bottom: 2px dashed #e8d0b8; }}
     .play-btn {{ width: 2.25rem; height: 2.25rem; border-radius: 50%; border: none; background: #9a7a5a; color: #fff; font-size: 0.85rem; cursor: pointer; flex-shrink: 0; }}
     .play-btn:hover {{ background: #7a5a3a; }}
     .play-wrap {{ flex: 1; height: 5px; background: #e8d0b8; border-radius: 3px; cursor: pointer; }}
@@ -136,10 +136,10 @@ TEMPLATE = """\
       <h1>{title}</h1>
       <div class="friends">{badges}</div>
     </header>
+{player}
     <section class="story">
 {paragraphs}
     </section>
-{player}
     <nav class="nav">
       {prev_link}
       <span class="dc">Day {daynum} / 365</span>
